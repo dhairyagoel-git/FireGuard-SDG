@@ -22,7 +22,7 @@ try {
 const maptype = "satellite";
 function MapComponent(props) {
   return (
-    <LoadScript googleMapsApiKey="">
+    <LoadScript googleMapsApiKey="AIzaSyBN9S4lsnOa1Hc3VbMmbtWJM9pa59vvU0s">
       <GoogleMap
         mapContainerStyle={props.style}
         mapTypeId={maptype}
