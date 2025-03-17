@@ -135,10 +135,7 @@ export function FireAlertsWeatherResponseCard() {
     </div>
   );
 }
-
-
 export function FireSafetyAwarenessCard() {
-
   const tips = [
     "🔥 Never leave an open flame unattended!",
     "🚪 Always keep emergency exits clear.",
