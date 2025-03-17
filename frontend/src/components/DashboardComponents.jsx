@@ -135,7 +135,10 @@ export function FireAlertsWeatherResponseCard() {
     </div>
   );
 }
+
+
 export function FireSafetyAwarenessCard() {
+
   const tips = [
     "🔥 Never leave an open flame unattended!",
     "🚪 Always keep emergency exits clear.",
@@ -148,12 +151,12 @@ export function FireSafetyAwarenessCard() {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentTip((prev) => (prev + 1) % tips.length);
-    }, 10000); // Rotate every 4 seconds
+    }, 2000); // Rotate every 4 seconds
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <div className="mt-4 text-black text-xl text-center p-3 rounded-md  shadow-sm">
+    <div className="mt-4 bg-yellow-100 text-yellow-900 text-center p-3 rounded-md font-medium border border-yellow-400 shadow-sm">
         {tips[currentTip]}
       </div>
   );

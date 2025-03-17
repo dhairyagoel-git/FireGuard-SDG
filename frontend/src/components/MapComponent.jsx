@@ -13,7 +13,7 @@ const center = {
 const maptype = "satellite";
 function MapComponent(props) {
   return (
-    <LoadScript googleMapsApiKey="AIzaSyBN9S4lsnOa1Hc3VbMmbtWJM9pa59vvU0s">
+    <LoadScript googleMapsApiKey="">
       <GoogleMap
         mapContainerStyle={props.style}
         mapTypeId={maptype}
