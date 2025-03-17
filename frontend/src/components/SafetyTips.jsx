@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import React from "react";
 import { useState } from "react";
 export function SafetyTipsAndCommunityResources() {
@@ -198,34 +199,32 @@ export function SafetyTipsAndCommunityResources() {
         "Ensure fire alarms are installed in key locations and have a loud sound for quick alerts.",
     },
   ];
-  
+
   return (
     <>
-      {/* <header className="bg-gradient-to-r  from-red-500 to-orange-500 text-white py-6 px-8 text-center rounded-lg shadow-lg">
+      <header className="bg-gradient-to-r from-red-500 to-orange-500 text-white py-6 px-8 text-center rounded-lg shadow-lg">
+        <Link className="" to="/dashboard">
+          <i class="fa-solid fa-xmark rounded-4xl border px-1.5 py-1 absolute left-97/100 bottom-94/100"></i>
+        </Link>
         <h1 className="text-3xl font-bold">
           🔥 Fire Safety & Community Resources
         </h1>
+
         <p className="mt-2 text-lg text-orange-200">
           Stay informed and prepared with essential fire safety guides,
           evacuation plans, and emergency contacts.
         </p>
-      </header> */}
-      <header className="bg-gradient-to-r from-red-500 to-orange-500 text-white py-6 px-8 text-center rounded-lg shadow-lg">
-  <h1 className="text-3xl font-bold">🔥 Fire Safety & Community Resources</h1>
-  <p className="mt-2 text-lg text-orange-200">
-    Stay informed and prepared with essential fire safety guides, evacuation plans, and emergency contacts.
-  </p>
 
-  {/* View All Resources Button */}
-  <div className="mt-4">
-    <a
-      href="/download"
-      className="inline-block bg-white text-red-500 font-semibold px-4 py-2 rounded-md shadow-md hover:bg-gray-100 transition"
-    >
-      📂 Download Resources
-    </a>
-  </div>
-</header>
+        {/* View All Resources Button */}
+        <div className="mt-4">
+          <a
+            href="/download"
+            className="inline-block bg-white text-red-500 font-semibold px-4 py-2 rounded-md shadow-md hover:bg-gray-100 transition"
+          >
+            📂 Download Resources
+          </a>
+        </div>
+      </header>
 
       <div className="">
         <section className="bg-white p-6 rounded-lg mt-6">
@@ -378,13 +377,11 @@ export function SafetyTipsAndCommunityResources() {
             ))}
           </div>
         </section>
-
-       
       </div>
     </>
   );
 }
-export function DownloadResources(){
+export function DownloadResources() {
   const downloadresources = [
     { name: "Fire Escape Plan", type: "pdf", link: "#" },
     { name: "Home Safety Checklist", type: "pdf", link: "#" },
@@ -396,33 +393,39 @@ export function DownloadResources(){
     pdf: "📄",
     doc: "📑",
   };
-  return(
+  return (
     <div className="bg-white p-6 shadow-md rounded-lg w-full border border-gray-200">
-    {/* Header */}
-    <h2 className="text-lg font-bold bg-gradient-to-r from-red-500 to-orange-500 text-white py-2 px-4 rounded-md inline-block">
-      📂 Resources & Downloads
-    </h2>
+      {/* Header */}
+      <div className="flex justify-between">
 
-    {/* List of Resources */}
-    <ul className="mt-4 space-y-3">
-      {downloadresources.map((resource, index) => (
-        <li
-          key={index}
-          className="flex items-center justify-between p-3 bg-gray-50 rounded-md shadow-sm border border-gray-300 hover:bg-gray-100 transition"
-        >
-          <div className="flex items-center gap-3">
-            <span className="text-2xl">{fileIcons[resource.type]}</span>
-            <p className="font-semibold text-gray-800">{resource.name}</p>
-          </div>
-          <a
-            href={resource.link}
-            className="bg-blue-500 text-white px-3 py-1 rounded-md text-xs hover:bg-blue-600 transition"
+      <h2 className="text-lg font-bold bg-gradient-to-r from-red-500 to-orange-500 text-white py-2 px-4 rounded-md inline-block">
+        📂 Resources & Downloads
+      </h2>
+      <Link className="" to="/tips">
+          <i class="fa-solid fa-xmark rounded-4xl border px-1.5 py-1 "></i>
+        </Link>
+      </div>
+
+      {/* List of Resources */}
+      <ul className="mt-4 space-y-3">
+        {downloadresources.map((resource, index) => (
+          <li
+            key={index}
+            className="flex items-center justify-between p-3 bg-gray-50 rounded-md shadow-sm border border-gray-300 hover:bg-gray-100 transition"
           >
-            ⬇ Download
-          </a>
-        </li>
-      ))}
-    </ul>
-  </div>
-  )
+            <div className="flex items-center gap-3">
+              <span className="text-2xl">{fileIcons[resource.type]}</span>
+              <p className="font-semibold text-gray-800">{resource.name}</p>
+            </div>
+            <a
+              href={resource.link}
+              className="bg-blue-500 text-white px-3 py-1 rounded-md text-xs hover:bg-blue-600 transition"
+            >
+              ⬇ Download
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
 }

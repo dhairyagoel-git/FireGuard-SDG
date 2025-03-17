@@ -10,8 +10,6 @@ function Layout() {
   );
 }
 export default Layout;
-export function NoNavbarRoutes(){
-  return(
-    <Outlet/>
-  )
+export function NoNavbarRoutes() {
+  return <Outlet />;
 }

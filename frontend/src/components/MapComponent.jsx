@@ -10,6 +10,15 @@ const center = {
   lat: 30.3165, // Example: San Francisco
   lng: 78.0322,
 };
+try {
+  const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY
+  console.log(GOOGLE_API_KEY);
+  
+} catch (error) {
+  console.log(error);
+  
+}
+
 const maptype = "satellite";
 function MapComponent(props) {
   return (
