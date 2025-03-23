@@ -1,5 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import FireIncidentDashboard, { FireReports } from "./firestationcomponents";
 export function FireStation() {
   const stationName = "Downtown LA";
 
@@ -17,7 +18,7 @@ export function FireStation() {
       id: 1,
       location: "Downtown, LA",
       type: "Structural Fire",
-      status: "In Progress",
+      status: "Dispatched",
       firefighters: [
         { name: "John Doe", role: "Squad Leader" },
         { name: "Sarah Lee", role: "Firefighter" },
@@ -43,7 +44,7 @@ export function FireStation() {
       id: 2,
       location: "Westside Apartments",
       type: "Electrical Fire",
-      status: "Containment Phase",
+      status: "On Scene",
       firefighters: [
         { name: "Emily Carter", role: "Team Lead" },
         { name: "Robert Brown", role: "Firefighter" },
@@ -66,7 +67,7 @@ export function FireStation() {
       id: 3,
       location: "Eastwood Warehouse",
       type: "Chemical Fire",
-      status: "Evacuation Ongoing",
+      status: "Dispatched",
       firefighters: [
         { name: "James Smith", role: "Hazmat Specialist" },
         { name: "Laura Williams", role: "Firefighter" },
@@ -90,7 +91,7 @@ export function FireStation() {
       id: 4,
       location: "Riverside Mall",
       type: "Kitchen Fire",
-      status: "Extinguished - Monitoring",
+      status: "Resolved",
       firefighters: [
         { name: "Daniel Clark", role: "Squad Leader" },
         { name: "Sophia White", role: "Firefighter" },
@@ -210,62 +211,8 @@ export function FireStation() {
         </div>
 
         {/* 🏷️ Incident List */}
-        <div className="mt-4 space-y-4">
-          <h2 className="text-lg font-bold bg-gradient-to-r from-red-500 to-red-700 text-white py-2 px-4 rounded-md inline-block">
-            🚨 Active incidents
-          </h2>
-          {incidents.map((incident) => (
-            <div
-              key={incident.id}
-              className={`flex justify-between items-center p-3 rounded-md shadow-sm border ${
-                incident.severity === "High"
-                  ? "bg-red-50 border-red-300"
-                  : incident.severity === "Medium"
-                  ? "bg-yellow-50 border-yellow-300"
-                  : "bg-green-50 border-green-300"
-              }`}
-            >
-              {/* Incident Details */}
-              <div>
-                <p className="font-semibold text-gray-800">
-                  📍 {incident.location}
-                </p>
-                <p className="text-sm text-gray-500">
-                  🔥 Severity:{" "}
-                  <span
-                    className={`px-2 py-0.5 rounded-full text-xs text-white ${
-                      incident.severity === "High"
-                        ? "bg-red-500"
-                        : incident.severity === "Medium"
-                        ? "bg-yellow-500"
-                        : "bg-green-500"
-                    }`}
-                  >
-                    {incident.severity}
-                  </span>
-                </p>
-              </div>
-
-              {/* Status & Containment Time */}
-              <div className="text-right">
-                <p className="text-sm text-gray-600">
-                  ⏳ {incident.containmentTime}
-                </p>
-                <span
-                  className={`px-3 py-1 rounded-md text-xs text-white ${
-                    incident.status === "Dispatched"
-                      ? "bg-yellow-500"
-                      : incident.status === "On Scene"
-                      ? "bg-blue-500"
-                      : "bg-green-500"
-                  }`}
-                >
-                  {incident.status}
-                </span>
-              </div>
-            </div>
-          ))}
-        </div>
+       <FireIncidentDashboard/> 
+       <FireReports/>
       </div>
       <div className="bg-white p-5 shadow-md rounded-lg w-full border border-gray-200">
         {/* Header */}
@@ -273,24 +220,7 @@ export function FireStation() {
           🚒 Fire Station Activity Overview
         </h2>
 
-        {/* Firefighters List */}
-        <div className="mt-4">
-          <h3 className="text-md font-semibold text-gray-800">
-            👨‍🚒 Active Firefighters
-          </h3>
-          <ul className="mt-2 space-y-2">
-            {firefighters.map((firefighter) => (
-              <li
-                key={firefighter.id}
-                className="p-3 bg-blue-50 rounded-md shadow-sm border border-blue-300 cursor-pointer hover:bg-blue-100 transition"
-                onClick={() => setSelectedFirefighter(firefighter)} // Open modal with details
-              >
-                <p className="font-semibold">{firefighter.name}</p>
-                <p className="text-sm text-gray-500">{firefighter.role}</p>
-              </li>
-            ))}
-          </ul>
-        </div>
+   
 
         {/* Modal Popup */}
         {selectedFirefighter && (

@@ -151,7 +151,7 @@ export function FireSafetyAwarenessCard() {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentTip((prev) => (prev + 1) % tips.length);
-    }, 2000); // Rotate every 4 seconds
+    }, 2000); 
     return () => clearInterval(interval);
   }, []);
 
