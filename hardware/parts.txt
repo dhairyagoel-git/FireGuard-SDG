@@ -1,0 +1,7 @@
+1. ESP32 Wroom32
+2. AHT10 Module
+3. MQ-2 Module
+4. IR Flame Sensor Module
+5. TP4056+DW01 Battery Charging and Management Module
+6. Solar Cell 5v-6v
+7. 18650 3.7v Li-Ion Battery
