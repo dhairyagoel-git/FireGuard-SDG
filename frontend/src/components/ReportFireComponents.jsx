@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import {useNavigate} from 'react-router-dom'
 export function FireLocationInput() {
   const [location, setLocation] = useState("");
 
@@ -23,7 +23,7 @@ export function FireLocationInput() {
   };
 
   return (
-    <div className="bg-white   p-6 pb-0 rounded-lg w-full max-w-2xl mt-6">
+    <div className="bg-white   p-6 pb-0 rounded-lg w-screen  max-w-2xl mt-6">
       {/* Section Title */}
       <h2 className="text-xl font-semibold text-gray-800">📍 Fire Location</h2>
 
@@ -52,7 +52,7 @@ export function FireDetailsInput() {
   const [additionalInfo, setAdditionalInfo] = useState("");
 
   return (
-    <div className="bg-white  p-6 pb-0 rounded-lg w-full max-w-2xl ">
+    <div className="bg-white  p-6 pb-0 rounded-lg w-screen max-w-2xl ">
       {/* Section Title */}
       <h2 className="text-xl font-semibold text-gray-800">🔥 Fire Details</h2>
 
@@ -112,7 +112,7 @@ export function FireImageUpload() {
   };
 
   return (
-    <div className="bg-white  p-6 rounded-lg w-full max-w-2xl ">
+    <div className="bg-white  p-6 rounded-lg w-screen max-w-2xl ">
       {/* Section Title */}
       <h2 className="text-xl font-semibold text-gray-800">
         📷 Upload Fire Images (Optional)
@@ -145,15 +145,16 @@ export function FireImageUpload() {
 }
 export function SubmitFireReport() {
   const [submitted, setSubmitted] = useState(false);
-
+  const navigate = useNavigate();
   const handleSubmit = () => {
     // Simulate report submission
     setSubmitted(true);
+    navigate("/maps");
     setTimeout(() => setSubmitted(false), 5000); // Auto-hide confirmation after 5 seconds
   };
 
   return (
-    <div className="bg-white  p-6 rounded-lg w-full max-w-2xl mt-6 text-center">
+    <div className="bg-white  p-6 rounded-lg w-screen max-w-2xl mt-6 text-center">
       {/* Submit Button */}
       <button
         onClick={handleSubmit}

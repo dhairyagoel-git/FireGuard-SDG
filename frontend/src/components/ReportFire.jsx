@@ -11,7 +11,7 @@ export function ReportFire() {
     <>
       <div className=" bg-gray-100 flex flex-col items-center py-10 px-4">
         {/* Page Title */}
-        <h1 className="text-3xl font-bold text-red-600 mb-4">
+        <h1 className="text-3xl font-bold text-center text-red-600 mb-4">
           🔥 Report a Fire Incident
         </h1>
         {/* Description */}
@@ -23,7 +23,7 @@ export function ReportFire() {
         <br />
         <form
           action=""
-          className="bg-white shadow-md w-48/100 flex flex-col items-center"
+          className="bg-white shadow-md w-48/100  flex flex-col items-center"
         >
           <FireLocationInput />
           <FireDetailsInput />

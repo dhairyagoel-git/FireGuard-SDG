@@ -1,10 +1,29 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import FireIncidentDashboard, { FireReports } from "./firestationcomponents";
 export function FireStation() {
   const stationName = "Downtown LA";
 
   const [time, setTime] = useState(new Date());
+
+
+
+
+
+  const [show, setShow] = useState(false);
+  useState(()=>{
+    setTimeout(() => {
+      setShow(true);
+    }, 14000);
+    setTimeout(() => {
+      setShow(false);
+    }, 18000);
+  },[]);
+
+
+
+
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -38,7 +57,7 @@ export function FireStation() {
         { name: "Police Dept.", contact: "+1 800-555-5678" },
       ],
       additionalNotes:
-        "Structure is unstable. Nearby buildings at risk. Additional water supply requested.",
+        "building is unstable. Nearby buildings at risk. Additional water supply requested.",
     },
     {
       id: 2,
@@ -173,24 +192,26 @@ export function FireStation() {
   return (
     <>
       <header className="bg-gradient-to-r from-red-600 to-orange-500 text-white p-5 flex justify-between items-center rounded-lg shadow-lg">
-        {/* Fire Station Name */}
-        <div className="flex items-center gap-3">
-          <span className="text-3xl">🚒</span>
-          <h1 className="text-2xl font-bold">
-            {stationName || "Fire Station Dashboard"}
-          </h1>
-        </div>
+  {/* Fire Station Name (Left on mobile) */}
+  <div className="flex items-center gap-2 sm:gap-3">
+    <span className="text-3xl">🚒</span>
+    <h1 className="text-2xl font-bold">
+      {stationName || "Fire Station Dashboard"}
+    </h1>
+  </div>
 
-        {/* Current Time Display */}
-        <div className="bg-white text-red-600 px-4 py-2 rounded-md shadow-md font-semibold">
-          🕒 {time.toLocaleTimeString()}
-        </div>
+  {/* Current Time Display (Hidden on Mobile) */}
+  <div className="hidden sm:block bg-white text-red-600 px-4 py-2 rounded-md shadow-md font-semibold">
+    🕒 {time.toLocaleTimeString()}
+  </div>
 
-        {/* Logout Button */}
-        <button className="bg-white text-red-600 px-5 py-2 rounded-md font-semibold shadow-md hover:bg-gray-100 transition">
-          🔒 Logout
-        </button>
-      </header>
+  {/* Logout Button (Right on mobile) */}
+  <button className="bg-white text-red-600 px-5 py-2 rounded-md font-semibold shadow-md hover:bg-gray-100 transition">
+    🔒 Logout
+  </button>
+</header>
+
+
       <div className="bg-white p-5 shadow-lg rounded-lg w-full border border-gray-200 mt-5">
         {/* 🔥 Header */}
 
@@ -210,17 +231,39 @@ export function FireStation() {
           </div>
         </div>
 
+        <div className="flex justify-center items-center min-h-0">
+          {show && (
+            <div className="flex items-center justify-between bg-red-100 text-red-700 px-4 py-3 my-7 rounded-lg shadow-md w-full mx-5">
+              {/* Icon and Message */}
+              <div className="flex items-center gap-2">
+                <span className="text-red-500 text-lg"><i className="fa-solid fa-circle-exclamation"></i></span>
+                <span className="font-medium">
+                
+                  A new report has been submitted. Please review it.
+                </span>
+              </div>
+
+              {/* Dismiss Button */}
+              <button
+                className="text-red-700 hover:text-red-900"
+                onClick={() => setShow(false)}
+              >
+                ✖
+              </button>
+            </div>
+          )}
+        </div>
+
         {/* 🏷️ Incident List */}
-       <FireIncidentDashboard/> 
-       <FireReports/>
+        {/* <FireIncidentDashboard /> */}
+        <FireReports />
       </div>
+
       <div className="bg-white p-5 shadow-md rounded-lg w-full border border-gray-200">
         {/* Header */}
         <h2 className="text-lg font-bold bg-gradient-to-r from-gray-700 to-gray-900 text-white py-2 px-4 rounded-md inline-block">
           🚒 Fire Station Activity Overview
         </h2>
-
-   
 
         {/* Modal Popup */}
         {selectedFirefighter && (
@@ -313,6 +356,11 @@ export function FireStation() {
 }
 
 export function FireStationLogin() {
+  const navigate  = useNavigate();
+  const handlelogin=()=>{
+    console.log("login")
+    navigate('/firestation');
+  }
   return (
     <>
       <header className="bg-gradient-to-r from-red-600 to-orange-500 text-white py-6 px-8 text-center rounded-lg shadow-lg">
@@ -357,7 +405,7 @@ export function FireStationLogin() {
 
         {/* Forgot Password & Login Button */}
         <div className="mt-4 flex  items-center">
-          <button className="bg-red-500 text-white w-full px-4 py-2 rounded-md hover:bg-red-600 m-auto transition">
+          <button onClick={handlelogin} className="bg-red-500 text-white w-full px-4 py-2 rounded-md hover:bg-red-600 m-auto transition">
             Login
           </button>
         </div>

@@ -14,17 +14,19 @@ app.get("/", (req, res) => {
 app.get("/mapspage", (req, res) => {
   const responsearray = [
     [
-      { location: "Downtown, LA", status: "Active", risk: "High" },
-      { location: "Brooklyn, NY", status: "Under Control", risk: "Medium" },
+      { location: "Connaught Place", status: "Active", risk: "High" },
+      { location: "Bandra, Mumbai", status: "Under Control", risk: "Medium" },
     ],
     [
-      { name: "Central Fire Station", distance: "2.5 km" },
-      { name: "Westside Fire Dept.", distance: "5.0 km" },
+      { name: "Connaught Place Fire Station", distance: "2.5 km" },
+      { name: "Bandra Fire Station", distance: "5.0 km" },
     ],
     [
-      { name: "Fire Department", number: "101" },
-      { name: "Emergency Services", number: "911" },
+      { name: "Fire Department", number: "100" },
+      { name: "National Disaster Response Force (NDRF)", number: "1078" },
     ],
+
+  
   ];
   res.send(responsearray);
 });
@@ -79,13 +81,7 @@ app.get("/dashboard", (req, res) => {
         humidity: "💧 60%",
       },
     ],
-    [
-      "🔥 Never leave an open flame unattended!",
-      "🚪 Always keep emergency exits clear.",
-      "🧯 Test your fire extinguisher monthly.",
-      "⚡ Avoid overloading electrical outlets.",
-      "📞 Have emergency numbers saved.",
-    ],
+    
   ];
   res.send(responsearray);
 });

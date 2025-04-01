@@ -1,46 +1,53 @@
-import { GoogleMap, LoadScript } from "@react-google-maps/api";
 
-const containerStyle = {
-  width: "100%",
-  height: "400px",
-  opacity: ".2",
-};
+import { useEffect, useRef } from "react";
+import { Loader } from "@googlemaps/js-api-loader";
 
-const center = {
-  lat: 30.3165, // Example: San Francisco
-  lng: 78.0322,
-};
-try {
-  const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY
-  console.log(GOOGLE_API_KEY);
-  
-} catch (error) {
-  console.log(error);
-  
+const mapContainerStyle = { width: "100%", height: "500px" };
+const center = { lat: 28.7041, lng: 77.1025 }; // Example: New Delhi
+
+const fireStations = [
+  { id: 1, name: "Fire Station 1", lat: 28.7045, lng: 77.1030 },
+  { id: 2, name: "Fire Station 2", lat: 28.7055, lng: 77.1040 },
+];
+
+export default function MapComponent(props) {
+  const mapRef = useRef(null);
+
+  useEffect(() => {
+    const loader = new Loader({
+      apiKey: "AIzaSyBN9S4lsnOa1Hc3VbMmbtWJM9pa59vvU0s", // Replace with your actual API key
+      version: "weekly",
+      libraries: ["marker"], // Load marker library
+    });
+
+    loader.load().then(() => {
+      if (!google.maps.marker) {
+        console.error("Advanced Markers API not loaded properly!");
+        return;
+      }
+
+      const { Map } = google.maps;
+      const { AdvancedMarkerElement } = google.maps.marker;
+
+      const map = new Map(mapRef.current, {
+        center,
+        zoom: 14,
+        mapId: "ddff16096d736753", // Replace with your actual Map ID
+      });
+
+      fireStations.forEach((station) => {
+        new AdvancedMarkerElement({
+          position: { lat: station.lat, lng: station.lng },
+          map,
+          title: station.name,
+        });
+      });
+    });
+  }, []);
+
+  return <div ref={mapRef} style={props.style} />;
 }
 
-const maptype = "satellite";
-function MapComponent(props) {
-  return (
-    <LoadScript googleMapsApiKey="AIzaSyBN9S4lsnOa1Hc3VbMmbtWJM9pa59vvU0s">
-      <GoogleMap
-        mapContainerStyle={props.style}
-        mapTypeId={maptype}
-        center={center}
-        zoom={10}
-      >
-        <div
-          id="marker"
-          style={{
-            position: "absolute",
-            transform: "translate(-50%, -100%)",
-          }}
-        >
-          🔥 {/* Custom marker emoji */}
-        </div>
-      </GoogleMap>
-    </LoadScript>
-  );
-}
 
-export default MapComponent;
+
+

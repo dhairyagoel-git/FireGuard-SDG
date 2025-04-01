@@ -6,7 +6,13 @@ export function Dashboard() {
   const [expandedIndex, setExpandedIndex] = useState(null);
   const [currentTip, setCurrentTip] = useState(0);
   const [alerts, setalerts] = useState([]);
-  const [tips, settips] = useState([]);
+  const [tips, settips] = useState([
+    "🔥 Never leave an open flame unattended!",
+    "🚪 Always keep emergency exits clear.",
+    "🧯 Test your fire extinguisher monthly.",
+    "⚡ Avoid overloading electrical outlets.",
+    "📞 Have emergency numbers saved.",
+  ]);
 
   useEffect(() => {
     axios
@@ -14,15 +20,11 @@ export function Dashboard() {
       .then((response) => {
         const alert = response.data[0];
         setalerts(alert);
-        const tip = response.data[1];
-        settips(tip);
+        
 
       })
       .catch((error) => console.error("Error fetching data:", error));
   }, []);
-  useEffect(()=>{
-    console.log(tips);
-  },[tips])
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentTip((prev) => (prev + 1) % tips.length);

@@ -115,7 +115,7 @@ const FireIncidentDashboard = () => {
     {
       id: 1,
       location: "Downtown, LA",
-      type: "Structural Fire",
+      type: "Building Fire",
       status: "Dispatched",
       firefighters: [
         { name: "John Doe", role: "Squad Leader" },
@@ -136,7 +136,7 @@ const FireIncidentDashboard = () => {
         { name: "Police Dept.", contact: "+1 800-555-5678" },
       ],
       additionalNotes:
-        "Structure is unstable. Nearby buildings at risk. Additional water supply requested.",
+        "building is unstable. Nearby buildings at risk. Additional water supply requested.",
     },
   ]);
 
@@ -181,13 +181,22 @@ import "react-toastify/dist/ReactToastify.css";
 
 
 export  function FireReports() {
-  const [newReports, setNewReports] = useState([
-    { id: 1, location: "Downtown LA", type: "Structural Fire", status: "Unreviewed" },
-    { id: 2, location: "Westside Apartments", type: "Electrical Fire", status: "Unreviewed" },
-  ]);
+  const [newReports, setNewReports] = useState([]);
   const [ongoingIncidents, setOngoingIncidents] = useState([]);
   const [selectedReport, setSelectedReport] = useState(null);
   const [assignedTeam, setAssignedTeam] = useState("");
+
+
+  useState(()=>{
+    setTimeout(() => {
+      setNewReports([
+        { id: 1, location: "Westside Apartments", type: "Building Fire", status: "Unreviewed" },
+      ])
+    }, 15000);
+  },[])
+
+
+
 
   const handleAssign = (reportId) => {
     if (!assignedTeam) {
@@ -207,7 +216,7 @@ export  function FireReports() {
   };
 
   return (
-    <div className="p-4">
+    <div className="p-4 ">
       <h2 className="text-xl font-bold">🚨 New Fire Reports</h2>
       <div className="mt-4 space-y-3">
         {newReports.length > 0 ? (
